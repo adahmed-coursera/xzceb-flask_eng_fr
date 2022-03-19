@@ -3,17 +3,17 @@ import unittest
 
 class TestEnglishToEnglish(unittest.TestCase):
     def test_null_english(self):
-        assert english_to_french('') == "Unable to validate payload size, the 'text' is empty."
+        self.assertEqual(english_to_french(''), "Unable to validate payload size, the 'text' is empty.")
 
     def test_string_english(self):
-        assert english_to_french('Hello') == 'Bonjour'
+        self.assertNotEqual(english_to_french('Hello'),'Oui')
 
 
 class TestFrenchToEnglish(unittest.TestCase):
     def test_null_french(self):
-        assert french_to_english('') == "Unable to validate payload size, the 'text' is empty."
+        self.assertEqual(french_to_english(''),"Unable to validate payload size, the 'text' is empty.")
 
     def test_string_french(self):
-        assert french_to_english('Bonjour') == 'Hello'
+        self.assertNotEqual(french_to_english('Bonjour'), 'Yes')
 
 unittest.main()
