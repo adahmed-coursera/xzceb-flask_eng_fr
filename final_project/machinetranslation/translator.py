@@ -4,20 +4,24 @@ languages translation available in this module:
 2- French to English
 """
 import os
+import json
 from ibm_watson import LanguageTranslatorV3, ApiException
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+import warnings;
+warnings.simplefilter('ignore')
 from dotenv import load_dotenv
 load_dotenv()
 
 
-APIKEY = os.environ['apikey']
-URL = os.environ['url']
-authenticator = IAMAuthenticator(f'{APIKEY}')
-language_translator = LanguageTranslatorV3(version='2018-05-01',
-authenticator=authenticator)
-language_translator.set_service_url(f'{URL}')
+apikey = os.environ['apikey']
+url = os.environ['url']
+version = os.environ['version']
+authenticator = IAMAuthenticator(f'{apikey}')
+language_translator = LanguageTranslatorV3(version=f'{version}',authenticator=authenticator)
+language_translator.set_service_url(f'{url}')
 
-def english_to_french(englishtext):
+
+def englishToFrench(englishtext):
     """function that take english text and translate it into french text
 
     Args:
@@ -34,7 +38,7 @@ def english_to_french(englishtext):
     except ApiException as ex:
         return ex.message
 
-def french_to_english(frenchtext):
+def frenchToEnglish(frenchtext):
     """function that take french text and translate it into english text
 
     Args:
